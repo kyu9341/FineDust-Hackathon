@@ -13,6 +13,7 @@
         android:layout_weight="0.9"
         class="com.google.android.gms.maps.MapFragment" />
     <Button
+        android:background="#6D83FA"
         android:text="주변 박스 위치 찾기"
         android:layout_width="match_parent"
         android:layout_height="0dp"

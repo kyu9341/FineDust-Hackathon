@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         pm25Text = (TextView)findViewById(R.id.pm25Text);
         Button loginBtn = (Button)findViewById(R.id.loginBtn);
         userIDText = (TextView)findViewById(R.id.userIDText);
+        Button cardBtn = (Button)findViewById(R.id.cardBtn);
+
 
         Intent intent = getIntent();
         userID = intent.getStringExtra("userID");
@@ -108,6 +110,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cardBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CardActivity.class);
                 startActivity(intent);
             }
         });

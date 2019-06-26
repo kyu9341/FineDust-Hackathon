@@ -130,7 +130,7 @@ public class MapActivity extends AppCompatActivity  implements OnMapReadyCallbac
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                for (noman.googleplaces.Place place : places) {
+                for (final noman.googleplaces.Place place : places) {
 
                     LatLng latLng
                             = new LatLng(place.getLatitude()
@@ -138,13 +138,26 @@ public class MapActivity extends AppCompatActivity  implements OnMapReadyCallbac
 
                     String markerSnippet = getCurrentAddress(latLng);
 
-                    MarkerOptions markerOptions = new MarkerOptions();
+                    final MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.position(latLng);
                     markerOptions.title(place.getName());
-                    markerOptions.snippet("\n박스 1-4 "+ "\n박스 7-2");
+                    markerOptions.snippet(markerSnippet);
                     Marker item = mGoogleMap.addMarker(markerOptions);
                     previous_marker.add(item);
 
+
+                    // 마커 클릭 리스너`
+                    mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+
+                        public boolean onMarkerClick(Marker marker) {
+
+                                    String placeName = place.getName();
+                                    markerOptions.title(placeName+"역");
+                                     Toast.makeText(getApplicationContext(), placeName, Toast.LENGTH_LONG)
+                                               .show();
+                            return false;
+                        }
+                    });
                 }
 
                 //중복 마커 제거
@@ -274,19 +287,7 @@ public class MapActivity extends AppCompatActivity  implements OnMapReadyCallbac
             }
         });
 
-// 마커 클릭 리스너
-        mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
 
-            public boolean onMarkerClick(Marker marker) {
-                String text = "[마커 클릭 이벤트] latitude ="
-                        + marker.getPosition().latitude + ", longitude ="
-                        + marker.getPosition().longitude;
-
-       //         Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG)
-     //                   .show();
-                return false;
-            }
-        });
 
 
 

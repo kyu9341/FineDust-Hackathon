@@ -16,6 +16,19 @@
         android:textSize="20dp"
         android:textColor="#ffffff"/>
 
+    <Button
+        android:id="@+id/cardBtn"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+
+        android:background="@drawable/stunemo"
+        android:text="카드 등록"
+        android:textSize="20dp"
+        android:textColor="#ffffff"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
