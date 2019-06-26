@@ -37,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
         Button boxLocation = (Button)findViewById(R.id.boxLocation);
         pm10Text = (TextView)findViewById(R.id.pm10Text);
         pm25Text = (TextView)findViewById(R.id.pm25Text);
+        Button loginBtn = (Button)findViewById(R.id.loginBtn);
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         regionSetting.setOnClickListener(new View.OnClickListener() {
             @Override

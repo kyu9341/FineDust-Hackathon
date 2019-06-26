@@ -59,6 +59,9 @@ public class MapActivity extends AppCompatActivity  implements OnMapReadyCallbac
     private GoogleMap mGoogleMap = null;
     private Marker currentMarker = null;
 
+    private int stock1 = 0;
+    private int stock2 = 0;
+    private int stock3 = 0;
     private static final String TAG = "googlemap_example";
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 2002;
@@ -72,6 +75,7 @@ public class MapActivity extends AppCompatActivity  implements OnMapReadyCallbac
     boolean mMoveMapByUser = true;
     boolean mMoveMapByAPI = true;
     LatLng currentPosition;
+
 
     LocationRequest locationRequest = new LocationRequest()
             .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
@@ -136,7 +140,7 @@ public class MapActivity extends AppCompatActivity  implements OnMapReadyCallbac
 
                     MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.position(latLng);
-                    markerOptions.title(place.getName());
+                    markerOptions.title(place.getName()+"\n박스 1-4 재고 : "+stock1+ "\n박스 7-2 재고 : "+stock2);
                     markerOptions.snippet(markerSnippet);
                     Marker item = mGoogleMap.addMarker(markerOptions);
                     previous_marker.add(item);
@@ -269,6 +273,22 @@ public class MapActivity extends AppCompatActivity  implements OnMapReadyCallbac
                 Log.d( TAG, "onMapClick :");
             }
         });
+
+// 마커 클릭 리스너
+        mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+
+            public boolean onMarkerClick(Marker marker) {
+                String text = "[마커 클릭 이벤트] latitude ="
+                        + marker.getPosition().latitude + ", longitude ="
+                        + marker.getPosition().longitude;
+
+       //         Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG)
+     //                   .show();
+                return false;
+            }
+        });
+
+
 
         mGoogleMap.setOnCameraMoveStartedListener(new GoogleMap.OnCameraMoveStartedListener() {
 
