@@ -42,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         cancelBtn = (Button) findViewById(R.id.cancelBtn);
         completeBtn = (Button)findViewById(R.id.completeBtn);
+
         final Button validateBtn = (Button)findViewById(R.id.validateBtn);
         validateBtn.setOnClickListener(new View.OnClickListener() {  // 중복확인 시 이벤트 처리
             @Override
@@ -99,6 +100,15 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         completeBtn.setOnClickListener(new View.OnClickListener() { // 사용자 가입 시 회원가입 후 로그인페이지로 이동
             @Override
             public void onClick(View view) {
@@ -140,8 +150,11 @@ public class RegisterActivity extends AppCompatActivity {
                                 dialog.show();
 
                                 //                               finish();
-                                Intent completeIntent = new Intent(getApplicationContext(), LoginActivity.class); // 로그인 화면으로 돌아감
+                                Intent completeIntent = new Intent(getApplicationContext(), MainActivity.class); // 로그인 화면으로 돌아감
+                                completeIntent.putExtra("userID", ID);
                                 startActivity(completeIntent);
+                                Log.e("userID = ",ID+"userID");
+                                finish();
                             }else{ // 회원 등록에 실패한 경우 실패 알림창 출력
                                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
                                 dialog = builder.setMessage("회원 등록에 실패했습니다.")
@@ -164,5 +177,15 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (dialog != null)
+        {
+            dialog.dismiss();
+            dialog = null;
+        }
     }
 }

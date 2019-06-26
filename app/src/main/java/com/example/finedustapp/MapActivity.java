@@ -140,8 +140,8 @@ public class MapActivity extends AppCompatActivity  implements OnMapReadyCallbac
 
                     MarkerOptions markerOptions = new MarkerOptions();
                     markerOptions.position(latLng);
-                    markerOptions.title(place.getName()+"\n박스 1-4 재고 : "+stock1+ "\n박스 7-2 재고 : "+stock2);
-                    markerOptions.snippet(markerSnippet);
+                    markerOptions.title(place.getName());
+                    markerOptions.snippet("\n박스 1-4 "+ "\n박스 7-2");
                     Marker item = mGoogleMap.addMarker(markerOptions);
                     previous_marker.add(item);
 
@@ -440,7 +440,7 @@ public class MapActivity extends AppCompatActivity  implements OnMapReadyCallbac
                     1);
         } catch (IOException ioException) {
             //네트워크 문제
-            Toast.makeText(this, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show();
+   //         Toast.makeText(this, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show();
             return "지오코더 서비스 사용불가";
         } catch (IllegalArgumentException illegalArgumentException) {
             Toast.makeText(this, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show();

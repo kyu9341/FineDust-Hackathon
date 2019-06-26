@@ -52,6 +52,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="45dp"
             android:background="@drawable/nemo"
+            android:inputType="textPassword"
             android:hint="PW"
             android:paddingLeft="15dp"
             android:textColor="#000000"
