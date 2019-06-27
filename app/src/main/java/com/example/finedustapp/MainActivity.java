@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     TextView userIDText;
     public static String userID;
     public final String idKey = "userID";
+    private String CardNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         userID = intent.getStringExtra("userID");
         Log.e("userID = ",userID+"userID");
+
+        CardNum = intent.getStringExtra("CardNum");
+        Log.e("CardNum = ",CardNum+"  /CardNum");
         // 지난번 저장해놨던 사용자 입력값을 꺼내서 보여주기
         SharedPreferences sf = getSharedPreferences(idKey, 0);
         String str = sf.getString("name", ""); // 키값으로 꺼냄
@@ -58,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(str.equals("") && userID == null){
             userIDText.setText("먼저 로그인을 해주세요");
+            cardBtn.setVisibility(View.INVISIBLE);
         }else{
 
         //    userIDText.setText(userID+"님 환영합니다");

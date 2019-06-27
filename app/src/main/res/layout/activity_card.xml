@@ -31,17 +31,34 @@
         android:elevation="5dp"
         android:orientation="vertical">
 
-        <EditText
+        <TextView
+        android:gravity="center"
+        android:text="NFC카드를 태그해주세요"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="45dp"
+            android:paddingLeft="15dp"
+            android:textColor="#000000"
+            android:textColorHint="#888888"
+            android:textSize="20dp"/>
+
+
+
+
+        <TextView
             android:id="@+id/cardNumText"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginLeft="45dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="45dp"
             android:background="@drawable/nemo"
             android:paddingLeft="15dp"
             android:textColor="#000000"
-            android:textColorHint="#888888" />
+            android:textColorHint="#888888"
+            android:textSize="25dp"/>
 
 
         <LinearLayout
@@ -61,9 +78,21 @@
                 android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight="45dp"
+                android:layout_marginRight="15dp"
                 android:background="@drawable/stunemo"
                 android:text="카드 등록"
+                android:textSize="20dp"
+                android:textColor="#ffffff"
+                />
+            <Button
+                android:id="@+id/cancelBtn"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="45dp"
+                android:background="@drawable/stunemo"
+                android:text="취소"
                 android:textSize="20dp"
                 android:textColor="#ffffff"
                 />

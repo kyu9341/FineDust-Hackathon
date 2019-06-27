@@ -152,9 +152,9 @@ public class MapActivity extends AppCompatActivity  implements OnMapReadyCallbac
                         public boolean onMarkerClick(Marker marker) {
 
                                     String placeName = place.getName();
-                                    markerOptions.title(placeName+"역");
-                                     Toast.makeText(getApplicationContext(), placeName, Toast.LENGTH_LONG)
-                                               .show();
+  //                                  markerOptions.title(placeName+"역");
+   //                                  Toast.makeText(getApplicationContext(), placeName, Toast.LENGTH_LONG)
+    //                                           .show();
                             return false;
                         }
                     });

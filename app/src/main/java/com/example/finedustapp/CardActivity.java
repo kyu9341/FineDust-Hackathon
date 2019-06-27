@@ -27,7 +27,7 @@ import java.net.URLEncoder;
 
 public class CardActivity extends AppCompatActivity {
 
-    EditText cardNumText;
+    TextView cardNumText;
 
     private NfcAdapter nfcAdapter;//nfc 어뎁터
     private PendingIntent pendingIntent;
@@ -39,8 +39,9 @@ public class CardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card);
-        cardNumText = (EditText) findViewById(R.id.cardNumText);
+        cardNumText = (TextView) findViewById(R.id.cardNumText);
         Button cardBtn = (Button)findViewById(R.id.cardBtn);
+        Button cancelBtn = (Button)findViewById(R.id.cancelBtn);
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);//nfc 어뎁터 등록
         Intent intent = new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -58,6 +59,12 @@ public class CardActivity extends AppCompatActivity {
             }
         });
 
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
     }
@@ -106,7 +113,7 @@ public class CardActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute(){
             try{
-                target = "http://kyu9341.cafe24.com/dust1.php?RegisterCard="+ URLEncoder.encode(cardNum, "UTF-8")+"&ID="+URLEncoder.encode(MainActivity.userID, "UTF-8"); // GET 방식으로 인덱스를 서버에 전송
+                target = "http://kyu9341.cafe24.com/RegisterCard.php?CardNum="+ URLEncoder.encode(cardNum, "UTF-8")+"&ID="+URLEncoder.encode(MainActivity.userID, "UTF-8"); // GET 방식으로 인덱스를 서버에 전송
                 Log.e("cardNum = ", cardNum + "  //cardNum");
                 Log.e("MainActivity.userID = ", MainActivity.userID + "  //MainActivity.userID");
 
@@ -155,6 +162,7 @@ public class CardActivity extends AppCompatActivity {
                 boolean success = jsonObject.getBoolean("success");
 
 
+
                 if(success){
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(CardActivity.this);
@@ -164,7 +172,7 @@ public class CardActivity extends AppCompatActivity {
                     dialog.show();
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);  // 메인 액티비티로 넘어감
-                    intent.putExtra("userID", cardNum);
+                    intent.putExtra("CardNum", cardNum);
                     startActivity(intent);
 
                     finish();
